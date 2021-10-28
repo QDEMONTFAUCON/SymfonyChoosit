@@ -4,9 +4,12 @@ namespace App\Entity;
 
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass=ProduitRepository::class)
+ * @UniqueEntity("slug")
  */
 class Produit
 {
@@ -28,7 +31,7 @@ class Produit
     private $description;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=0)
+     * @ORM\Column(type="decimal", precision=10, scale=2)
      */
     private $prix;
 
@@ -39,6 +42,7 @@ class Produit
 
     /**
      * @ORM\Column(type="string", length=255)
+	 * @Assert\Url()
      */
     private $fichier;
 

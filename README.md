@@ -7,6 +7,7 @@ Un site web, test pour choosit, contenant un catalogue de produits et une gestio
  * PHP 8.0
  * Composer
  * Symfony 5
+ * mySQL
  * Docker
  * Docker-compose
  
@@ -28,3 +29,9 @@ php bin/phpunit --testdox
 ```bash
 php bin/console doctrine:fixtures:load
 ```
+
+## Notes
+
+> les fichiers de traduction sont présents.
+> Ils fonctionnent en changeant la variable *default_locale* dans le __fichier config\packages\translation.yaml__.
+> Cependant, je n'ai pas réussi à créer un bouton dans l'application pour changer la valeur locale.
