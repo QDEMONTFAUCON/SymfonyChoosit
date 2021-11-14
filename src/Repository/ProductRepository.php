@@ -2,33 +2,33 @@
 
 namespace App\Repository;
 
-use App\Entity\Produit;
+use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * @method Produit|null find($id, $lockMode = null, $lockVersion = null)
- * @method Produit|null findOneBy(array $criteria, array $orderBy = null)
- * @method Produit[]    findAll()
- * @method Produit[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Product|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Product|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Product[]    findAll()
+ * @method Product[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ProduitRepository extends ServiceEntityRepository
+class ProductRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Produit::class);
+        parent::__construct($registry, Product::class);
     }
 
 	public function findAllOrderedByName()
     {
         return $this->getEntityManager()
-			->createQuery("SELECT produit.nom, produit.prix, produit.slug, produit.fichier FROM App\Entity\Produit produit ORDER BY produit.nom")
+			->createQuery("SELECT product.name, product.price, product.slug, product.file FROM App\Entity\Product product ORDER BY product.name")
 			->getResult()
 		;
     }
 
     // /**
-    //  * @return Produit[] Returns an array of Produit objects
+    //  * @return Product[] Returns an array of Product objects
     //  */
     /*
     public function findByExampleField($value)
@@ -45,7 +45,7 @@ class ProduitRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Produit
+    public function findOneBySomeField($value): ?Product
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')

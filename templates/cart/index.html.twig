@@ -9,39 +9,39 @@
                 <h1 class="display-4 fw-bolder">{{ total }} €</h1>
             </div>
         </div>
-		<a class="btn btn-danger mt-auto" href="{{ path('panier_del') }}">
+		<a class="btn btn-danger mt-auto" href="{{ path('cart_drop') }}">
 			{{ 'vider le panier'|trans }}
 		</a>
     </header>
     <section class="py-5">
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-				{% if panier|length > 0 %}
-					{% for item in panier %}
+				{% if cart|length > 0 %}
+					{% for item in cart %}
 						<div class="col mb-5">
 							<div class="card h-100">
-								<img class="card-img-top" src="{{ item.produit.fichier }}" alt="..." />
+								<img class="card-img-top" src="{{ item.product.file }}" alt="..." />
 								<div class="card-body p-4">
 									<div class="text-center">
-										<h5 class="fw-bolder">{{ item.produit.nom }}</h5>
-										{{ item.produit.prix }} € * {{ item.quantite }} = 
-										<span class="badge bg-dark text-white ms-1 rounded-pill">{{ item.produit.prix * item.quantite }} €</span>
+										<h5 class="fw-bolder">{{ item.product.name }}</h5>
+										{{ item.product.price }} € * {{ item.quantity }} = 
+										<span class="badge bg-dark text-white ms-1 rounded-pill">{{ item.product.price * item.quantity }} €</span>
 									</div>
 								</div>
 								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 									<div class="text-center">
-									{% if item.produit.id == id %}
-										{{ form_start(formNombre) }}
-											{{ form_row(formNombre.id, {'attr':{'value':item.produit.id}}) }}
-											{{ form_row(formNombre.nombre, {'label':"nombre à ajouter"|trans, 'attr':{'placeholder':"1", 'value':item.quantite, 'min':1, 'class':"form-control"}}) }}
+									{% if item.product.id == id %}
+										{{ form_start(formQuantity) }}
+											{{ form_row(formQuantity.id, {'attr':{'value':item.product.id}}) }}
+											{{ form_row(formQuantity.quantity, {'label':"nombre dans le panier"|trans, 'attr':{'placeholder':"1", 'value':item.quantity, 'min':1, 'class':"form-control"}}) }}
 											<button type="submit" class="btn btn-outline-dark mt-auto">{{ 'modifier'|trans }}</button>
-										{{ form_end(formNombre) }}
+										{{ form_end(formQuantity) }}
 									{% else %}
-										<a class="btn btn-outline-dark mt-auto" href="{{ path('panier_index', {'id':item.produit.id}) }}">
+										<a class="btn btn-outline-dark mt-auto" href="{{ path('cart_index', {'id':item.product.id}) }}">
 											{{ 'modifier'|trans }}
 										</a>
 									{% endif %}
-										<a class="btn btn-danger mt-auto" href="{{ path('panier_remove', {'id':item.produit.id}) }}">
+										<a class="btn btn-danger mt-auto" href="{{ path('cart_remove', {'id':item.product.id}) }}">
 											{{ 'supprimer'|trans }}
 										</a>
 									</div>

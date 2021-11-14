@@ -6,12 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-use App\Repository\ProduitRepository;
+use App\Repository\ProductRepository;
 
-class ApiProduitController extends AbstractController
+class ApiProductController extends AbstractController
 {
-    #[Route('/api/produits', name: 'api_produits')]
-    public function produits(ProduitRepository $productRepository): Response
+    #[Route('/api/produits', name: 'api_products')]
+    public function products(ProductRepository $productRepository): Response
     {
 		$products = $productRepository->findAll();
 		

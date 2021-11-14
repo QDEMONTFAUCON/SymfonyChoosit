@@ -6,7 +6,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
 use Faker\Factory;
-use App\Entity\Produit;
+use App\Entity\Product;
 
 class AppFixtures extends Fixture
 {
@@ -16,14 +16,14 @@ class AppFixtures extends Fixture
 		
 		for($p = 0; $p < 12; $p++)
 		{
-			$produit = new Produit();
-			$produit->setNom($faker->words(3, true))
+			$product = new Product();
+			$product->setName($faker->words(3, true))
 					->setDescription($faker->text(300))
-					->setPrix($faker->randomFloat(2, 10, 10000))
+					->setPrice($faker->randomFloat(2, 10, 10000))
 					->setSlug($faker->slug(2))
-					->setFichier($faker->imageUrl(360, 360, 'products', true));
+					->setFile($faker->imageUrl(360, 360, 'products', true));
 					
-			$manager->persist($produit);
+			$manager->persist($product);
 		}
 
         $manager->flush();
